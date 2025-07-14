@@ -1,0 +1,3 @@
+type Query {
+    _dummy: String # Champ placeholder si nécessaire, peut être retiré si un champ est défini ici
+}

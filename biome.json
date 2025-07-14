@@ -1,0 +1,12 @@
+{
+	"files": {
+		"includes": ["apps/**/*", "packages/**/*"]
+	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "single",
+			"quoteProperties": "preserve",
+			"indentStyle": "tab"
+		}
+	}
+}

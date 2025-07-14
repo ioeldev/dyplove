@@ -1,0 +1,4 @@
+# Définit le type Mutation racine.
+type Mutation {
+    _dummy: String # Champ placeholder si nécessaire
+}

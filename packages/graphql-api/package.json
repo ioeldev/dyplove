@@ -1,0 +1,22 @@
+{
+	"name": "@dyplove/graphql-api",
+	"version": "1.0.0",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"codegen:local": "GRAPHQL_API_URL=$(grep GRAPHQL_API_URL .env.local | cut -d '=' -f2) graphql-codegen --config codegen.yml",
+		"codegen:dev": "GRAPHQL_API_URL=$(grep GRAPHQL_API_URL .env.dev | cut -d '=' -f2) graphql-codegen --config codegen.yml"
+	},
+	"exports": {
+		"./*": "./src/*.ts",
+		"./types.generated": "./src/types.generated.ts"
+	},
+	"dependencies": {
+		"@apollo/client": "^3.13.8",
+		"@dev-plugins/apollo-client": "^0.3.1",
+		"@graphql-codegen/cli": "^5.0.7",
+		"@graphql-codegen/near-operation-file-preset": "^3.1.0",
+		"@graphql-codegen/typescript-react-apollo": "^4.3.3",
+		"graphql": "^16.11.0"
+	}
+}
