@@ -3,7 +3,7 @@
 import { type Auth, applyActionCode } from 'firebase/auth';
 import { CheckCircle2, XCircle } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { auth } from '@/lib/firebase';
@@ -18,7 +18,7 @@ async function handleVerifyEmail(auth: Auth, actionCode: string) {
 	}
 }
 
-export default function VerifyEmail() {
+function VerifyEmailContent() {
 	const [verificationState, setVerificationState] = useState<'loading' | 'success' | 'error'>('loading');
 	const [continueUrl, setContinueUrl] = useState<string | null>(null);
 	const searchParams = useSearchParams();
@@ -88,5 +88,24 @@ export default function VerifyEmail() {
 				</Button>
 			</div>
 		</div>
+	);
+}
+
+export default function VerifyEmail() {
+	return (
+		<Suspense
+			fallback={
+				<div className="min-h-screen flex items-center justify-center p-4">
+					<div className="max-w-md w-full space-y-4">
+						<Alert>
+							<AlertTitle>Loading</AlertTitle>
+							<AlertDescription>Please wait...</AlertDescription>
+						</Alert>
+					</div>
+				</div>
+			}
+		>
+			<VerifyEmailContent />
+		</Suspense>
 	);
 }
