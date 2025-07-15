@@ -25,27 +25,19 @@ export default function VerifyEmail() {
 
 	useEffect(() => {
 		const verifyEmail = async () => {
-			try {
-				const mode = searchParams.get('mode');
-				const actionCode = searchParams.get('oobCode');
-				const continueUrl = searchParams.get('continueUrl');
+			const mode = searchParams.get('mode');
+			const actionCode = searchParams.get('oobCode');
+			const continueUrl = searchParams.get('continueUrl');
 
-				if (mode !== 'verifyEmail' || !actionCode) {
-					setVerificationState('error');
-					return;
-				}
-
-				setContinueUrl(continueUrl);
-				const result = await handleVerifyEmail(auth, actionCode);
-				console.log(result);
-				setVerificationState(result.success ? 'success' : 'error');
-
-				// if (result.success) {
-			} catch (_error) {
-			} finally {
-				// window.history.replaceState({}, '', `${window.location.pathname}`);
+			if (mode !== 'verifyEmail' || !actionCode) {
+				setVerificationState('error');
+				return;
 			}
-			// }
+
+			setContinueUrl(continueUrl);
+			const result = await handleVerifyEmail(auth, actionCode);
+			console.log(result);
+			setVerificationState(result.success ? 'success' : 'error');
 		};
 
 		verifyEmail();
