@@ -1,12 +1,7 @@
 import '../global.css';
 
 import { ApolloProvider } from '@apollo/client';
-import {
-	DarkTheme,
-	DefaultTheme,
-	type Theme,
-	ThemeProvider,
-} from '@react-navigation/native';
+import { DarkTheme, DefaultTheme, type Theme, ThemeProvider } from '@react-navigation/native';
 import { PortalHost } from '@rn-primitives/portal';
 import { Stack } from 'expo-router';
 import * as React from 'react';
@@ -80,9 +75,7 @@ export default function RootLayout() {
 }
 
 const useIsomorphicLayoutEffect =
-	Platform.OS === 'web' && typeof window === 'undefined'
-		? React.useEffect
-		: React.useLayoutEffect;
+	Platform.OS === 'web' && typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
 
 function useSetWebBackgroundClassName() {
 	useIsomorphicLayoutEffect(() => {

@@ -18,6 +18,6 @@
     // #endregion
     // #region Debugger
     "debug.javascript.autoAttachFilter": "onlyWithFlag",
-    "debug.internalConsoleOptions": "openOnSessionStart",
+    "debug.internalConsoleOptions": "openOnSessionStart"
     // #endregion
 }

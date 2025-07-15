@@ -15,6 +15,11 @@ export type Scalars = {
   JSON: { input: any; output: any; }
 };
 
+export type AuthInfo = {
+  __typename?: 'AuthInfo';
+  emailVerifRequired: Scalars['Boolean']['output'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   _dummy?: Maybe<Scalars['String']['output']>;
@@ -23,6 +28,7 @@ export type Mutation = {
 export type Query = {
   __typename?: 'Query';
   _dummy?: Maybe<Scalars['String']['output']>;
+  authInfo?: Maybe<AuthInfo>;
   user?: Maybe<User>;
 };
 

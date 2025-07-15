@@ -1,20 +1,24 @@
-import React, { useState } from 'react';
-import { View, Alert, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import Constants from 'expo-constants';
 import { Link, router } from 'expo-router';
+import { FirebaseError } from 'firebase/app';
+import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
+import { useState } from 'react';
+import { Alert, KeyboardAvoidingView, Platform, ScrollView, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button } from '~/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '~/components/ui/card';
 import { Input } from '~/components/ui/input';
 import { Label } from '~/components/ui/label';
 import { Text } from '~/components/ui/text';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '~/components/ui/card';
 import { auth } from '~/lib/firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 export default function SignUp() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
+
+	const scheme = Constants.expoConfig?.scheme;
 
 	const handleSignUp = async () => {
 		if (!email || !password || !confirmPassword) {
@@ -34,29 +38,39 @@ export default function SignUp() {
 
 		setIsLoading(true);
 		try {
-			await createUserWithEmailAndPassword(auth, email, password);
+			const result = await createUserWithEmailAndPassword(auth, email, password);
+			await sendEmailVerification(result.user, {
+				url: `${scheme}://signin`,
+			});
 			// Navigation will be handled by auth state change
-			router.replace('/(app)');
-		} catch (error: any) {
+			// router.replace('/(app)');
+			Alert.alert(
+				'Sign Up Success',
+				'Please check your email for verification, once verified you can proceed to sign in',
+			);
+			router.replace('/signin');
+		} catch (error) {
 			let errorMessage = 'An error occurred during sign up';
-			
-			switch (error.code) {
-				case 'auth/email-already-in-use':
-					errorMessage = 'An account with this email already exists';
-					break;
-				case 'auth/invalid-email':
-					errorMessage = 'Invalid email address';
-					break;
-				case 'auth/weak-password':
-					errorMessage = 'Password is too weak. Please choose a stronger password';
-					break;
-				case 'auth/operation-not-allowed':
-					errorMessage = 'Email/password accounts are not enabled';
-					break;
-				default:
-					errorMessage = error.message || errorMessage;
+
+			if (error instanceof FirebaseError) {
+				switch (error.code) {
+					case 'auth/email-already-in-use':
+						errorMessage = 'An account with this email already exists';
+						break;
+					case 'auth/invalid-email':
+						errorMessage = 'Invalid email address';
+						break;
+					case 'auth/weak-password':
+						errorMessage = 'Password is too weak. Please choose a stronger password';
+						break;
+					case 'auth/operation-not-allowed':
+						errorMessage = 'Email/password accounts are not enabled';
+						break;
+					default:
+						errorMessage = error.message || errorMessage;
+				}
 			}
-			
+
 			Alert.alert('Sign Up Error', errorMessage);
 		} finally {
 			setIsLoading(false);
@@ -65,15 +79,8 @@ export default function SignUp() {
 
 	return (
 		<SafeAreaView className="flex-1 bg-background">
-			<KeyboardAvoidingView 
-				behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-				className="flex-1"
-			>
-				<ScrollView 
-					contentContainerStyle={{ flexGrow: 1 }}
-					className="flex-1 px-6"
-					keyboardShouldPersistTaps="handled"
-				>
+			<KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} className="flex-1">
+				<ScrollView contentContainerStyle={{ flexGrow: 1 }} className="flex-1 px-6" keyboardShouldPersistTaps="handled">
 					<View className="flex-1 justify-center py-8">
 						<View className="mb-8">
 							<Text className="text-3xl font-bold text-center mb-2">Create account</Text>
@@ -85,9 +92,7 @@ export default function SignUp() {
 						<Card className="w-full">
 							<CardHeader>
 								<CardTitle>Sign Up</CardTitle>
-								<CardDescription>
-									Create a new account to access all features
-								</CardDescription>
+								<CardDescription>Create a new account to access all features</CardDescription>
 							</CardHeader>
 							<CardContent className="gap-4">
 								<View className="gap-2">
@@ -130,38 +135,24 @@ export default function SignUp() {
 									/>
 								</View>
 
-								<Button 
-									onPress={handleSignUp}
-									disabled={isLoading}
-									className="mt-4"
-								>
+								<Button onPress={handleSignUp} disabled={isLoading} className="mt-4">
 									<Text>{isLoading ? 'Creating account...' : 'Sign Up'}</Text>
 								</Button>
 
 								<View className="relative my-6">
 									<View className="absolute inset-0 flex items-center">
-										<View className="w-full border-t border-border" />
+										<View className="w-full border-t " />
 									</View>
 									<View className="relative flex justify-center text-xs uppercase">
-										<Text className="bg-background px-2 text-muted-foreground">
-											Or continue with
-										</Text>
+										<Text className="bg-background px-2 text-muted-foreground">Or continue with</Text>
 									</View>
 								</View>
 
 								<View className="gap-3">
-									<Button 
-										variant="outline" 
-										disabled={true}
-										className="opacity-50"
-									>
+									<Button variant="outline" disabled={true} className="opacity-50">
 										<Text className="text-muted-foreground">Continue with Google</Text>
 									</Button>
-									<Button 
-										variant="outline" 
-										disabled={true}
-										className="opacity-50"
-									>
+									<Button variant="outline" disabled={true} className="opacity-50">
 										<Text className="text-muted-foreground">Continue with Apple</Text>
 									</Button>
 								</View>
@@ -181,4 +172,4 @@ export default function SignUp() {
 			</KeyboardAvoidingView>
 		</SafeAreaView>
 	);
-} 
+}

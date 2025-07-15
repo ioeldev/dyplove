@@ -4,28 +4,17 @@
     "author": "Yoel",
     "description": "Dyplove backend",
     "private": true,
-    "engines": {
-        "node": ">=18.11",
-        "pnpm": ">=7.27"
-    },
     "scripts": {
         "codegen": "graphql-codegen --config codegen.ts",
-        "dev": "pnpm /dev:.*/",
-        "dev:build": "esbuild dev.ts ./src --bundle --outdir=dist --packages=external --platform=node --sourcemap --watch",
-        "dev:run": "node --inspect -r ./dist/dev.js --watch dist/src",
-        "build": "esbuild index=./src --bundle --minify --outdir=dist --packages=external --platform=node",
-        "start": "node dist"
+        "dev": "bun --inspect --hot src/index.ts"
     },
     "dependencies": {
         "@apollo/server": "^4.12.2",
         "@as-integrations/express5": "^1.1.1",
-        "@hono/graphql-server": "^0.6.2",
-        "@hono/node-server": "^1.15.0",
         "cors": "^2.8.5",
         "esbuild": "^0.23.0",
         "express": "^5.1.0",
         "graphql": "^16.11.0",
-        "hono": "^4.8.4",
         "jsonwebtoken": "^9.0.2"
     },
     "devDependencies": {
@@ -39,6 +28,7 @@
         "@swc/core": "^1.12.11",
         "@types/cors": "^2.8.19",
         "@types/express": "^5.0.3",
+        "@types/jsonwebtoken": "^9.0.10",
         "@types/node": "^20.14.9",
         "dotenv": "^17.2.0"
     }

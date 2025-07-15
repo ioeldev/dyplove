@@ -1,4 +1,3 @@
-import { useUserQuery } from '@dyplove/graphql-api/user.generated';
 import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button } from '~/components/ui/button';
@@ -6,7 +5,7 @@ import { Text } from '~/components/ui/text';
 import { useAuth } from '~/providers/auth-provider';
 
 export default function Settings() {
-	const { data, loading, error } = useUserQuery();
+	// const { data, loading, error } = useUserQuery();
 	const { user, signOut } = useAuth();
 
 	const handleSignOut = async () => {

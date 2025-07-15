@@ -17,6 +17,11 @@ export type Scalars = {
   JSON: { input: any; output: any; }
 };
 
+export type AuthInfo = {
+  __typename?: 'AuthInfo';
+  emailVerifRequired: Scalars['Boolean']['output'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   _dummy?: Maybe<Scalars['String']['output']>;
@@ -25,6 +30,7 @@ export type Mutation = {
 export type Query = {
   __typename?: 'Query';
   _dummy?: Maybe<Scalars['String']['output']>;
+  authInfo?: Maybe<AuthInfo>;
   user?: Maybe<User>;
 };
 
@@ -111,6 +117,8 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
+  AuthInfo: ResolverTypeWrapper<AuthInfo>;
+  Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
   JSON: ResolverTypeWrapper<Scalars['JSON']['output']>;
   Mutation: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
@@ -119,11 +127,12 @@ export type ResolversTypes = {
   Int: ResolverTypeWrapper<Scalars['Int']['output']>;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
   AdditionalEntityFields: AdditionalEntityFields;
-  Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
+  AuthInfo: AuthInfo;
+  Boolean: Scalars['Boolean']['output'];
   JSON: Scalars['JSON']['output'];
   Mutation: {};
   String: Scalars['String']['output'];
@@ -132,7 +141,6 @@ export type ResolversParentTypes = {
   Int: Scalars['Int']['output'];
   ID: Scalars['ID']['output'];
   AdditionalEntityFields: AdditionalEntityFields;
-  Boolean: Scalars['Boolean']['output'];
 };
 
 export type UnionDirectiveArgs = {
@@ -182,6 +190,11 @@ export type MapDirectiveArgs = {
 
 export type MapDirectiveResolver<Result, Parent, ContextType = ApolloContext, Args = MapDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
+export type AuthInfoResolvers<ContextType = ApolloContext, ParentType extends ResolversParentTypes['AuthInfo'] = ResolversParentTypes['AuthInfo']> = {
+  emailVerifRequired?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export interface JsonScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['JSON'], any> {
   name: 'JSON';
 }
@@ -192,6 +205,7 @@ export type MutationResolvers<ContextType = ApolloContext, ParentType extends Re
 
 export type QueryResolvers<ContextType = ApolloContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   _dummy?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  authInfo?: Resolver<Maybe<ResolversTypes['AuthInfo']>, ParentType, ContextType>;
   user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
 };
 
@@ -203,6 +217,7 @@ export type UserResolvers<ContextType = ApolloContext, ParentType extends Resolv
 };
 
 export type Resolvers<ContextType = ApolloContext> = {
+  AuthInfo?: AuthInfoResolvers<ContextType>;
   JSON?: GraphQLScalarType;
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;

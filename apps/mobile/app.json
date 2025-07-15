@@ -12,12 +12,19 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "extra": {
+      "supportsRTL": true
+    },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.dyplove.app"
+      "bundleIdentifier": "com.dyplove.app",
+      "infoPlist": {
+        "ExpoLocalization_supportsRTL": true
+      },
+      "appleTeamId": "9345J8B4WZ"
     },
     "android": {
       "adaptiveIcon": {
@@ -33,7 +40,8 @@
     "plugins": [
       "expo-router",
       "react-native-edge-to-edge",
-      "expo-sqlite"
+      "expo-sqlite",
+      "expo-localization"
     ],
     "experiments": {
       "typedRoutes": true

@@ -5,3 +5,9 @@ query User {
 		age
 	}
 }
+
+query AuthInfo {
+	authInfo {
+		emailVerifRequired
+	}
+}

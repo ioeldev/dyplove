@@ -1,4 +1,3 @@
-import 'dotenv/config';
 import { createApp } from './app';
 import jwt from 'jsonwebtoken';
 const API_URL = process.env.API_URL;
@@ -6,6 +5,7 @@ const API_URL = process.env.API_URL;
 const { app } = createApp();
 
 app.listen(3456, () => {
+	console.log(process.env.JWT_SECRET);
 	const token = jwt.sign(
 		{
 			exp: Math.floor(Date.now() / 1000) + 30 * 24 * 60 * 60,
