@@ -32,5 +32,6 @@
 		"@types/jsonwebtoken": "^9.0.10",
 		"@types/node": "^20.14.9",
 		"dotenv": "^17.2.0"
-	}
+	},
+	"packageManager": "bun"
 }
