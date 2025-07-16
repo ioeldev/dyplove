@@ -6,6 +6,9 @@
         "apps/*",
         "packages/*"
     ],
+    "scripts": {
+        "start:backend": "cd apps/backend && bun run start"
+    },
     "resolutions": {
         "express": "5.1.0",
         "@types/express": "5.0.3",
