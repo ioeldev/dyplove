@@ -1,35 +1,36 @@
 {
-    "name": "@dyplove/backend",
-    "version": "0.0.1",
-    "author": "Yoel",
-    "description": "Dyplove backend",
-    "private": true,
-    "scripts": {
-        "codegen": "graphql-codegen --config codegen.ts",
-        "dev": "bun --inspect --hot src/index.ts"
-    },
-    "dependencies": {
-        "@apollo/server": "^4.12.2",
-        "@as-integrations/express5": "^1.1.1",
-        "cors": "^2.8.5",
-        "esbuild": "^0.23.0",
-        "express": "^5.1.0",
-        "graphql": "^16.11.0",
-        "jsonwebtoken": "^9.0.2"
-    },
-    "devDependencies": {
-        "@graphql-codegen/cli": "^5.0.7",
-        "@graphql-codegen/typescript": "^4.1.6",
-        "@graphql-codegen/typescript-mongodb": "^3.0.1",
-        "@graphql-codegen/typescript-resolvers": "^4.5.1",
-        "@graphql-tools/graphql-file-loader": "^8.0.20",
-        "@graphql-tools/load": "^8.1.0",
-        "@graphql-tools/merge": "^9.0.24",
-        "@swc/core": "^1.12.11",
-        "@types/cors": "^2.8.19",
-        "@types/express": "^5.0.3",
-        "@types/jsonwebtoken": "^9.0.10",
-        "@types/node": "^20.14.9",
-        "dotenv": "^17.2.0"
-    }
+	"name": "@dyplove/backend",
+	"version": "0.0.1",
+	"author": "Yoel",
+	"description": "Dyplove backend",
+	"private": true,
+	"scripts": {
+		"codegen": "graphql-codegen --config codegen.ts",
+		"dev": "bun --inspect --hot src/index.ts",
+		"start": "bun src/index.ts"
+	},
+	"dependencies": {
+		"@apollo/server": "^4.12.2",
+		"@as-integrations/express5": "^1.1.1",
+		"cors": "^2.8.5",
+		"esbuild": "^0.23.0",
+		"express": "^5.1.0",
+		"graphql": "^16.11.0",
+		"jsonwebtoken": "^9.0.2"
+	},
+	"devDependencies": {
+		"@graphql-codegen/cli": "^5.0.7",
+		"@graphql-codegen/typescript": "^4.1.6",
+		"@graphql-codegen/typescript-mongodb": "^3.0.1",
+		"@graphql-codegen/typescript-resolvers": "^4.5.1",
+		"@graphql-tools/graphql-file-loader": "^8.0.20",
+		"@graphql-tools/load": "^8.1.0",
+		"@graphql-tools/merge": "^9.0.24",
+		"@swc/core": "^1.12.11",
+		"@types/cors": "^2.8.19",
+		"@types/express": "^5.0.3",
+		"@types/jsonwebtoken": "^9.0.10",
+		"@types/node": "^20.14.9",
+		"dotenv": "^17.2.0"
+	}
 }

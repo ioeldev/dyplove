@@ -17,7 +17,7 @@ import { useAuth } from '~/providers/auth-provider';
 
 export default function SignIn() {
 	const [isLoading, setIsLoading] = useState(false);
-	const { emailVerifRequired, isReady } = useAuth();
+	const { emailVerifRequired } = useAuth();
 
 	const loginFormSchema = z.object({
 		email: z.email({ message: 'Invalid email address' }),

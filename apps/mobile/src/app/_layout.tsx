@@ -1,8 +1,23 @@
 import '../global.css';
 
 import { ApolloProvider } from '@apollo/client';
+import {
+	PlusJakartaSans_200ExtraLight,
+	PlusJakartaSans_200ExtraLight_Italic,
+	PlusJakartaSans_300Light,
+	PlusJakartaSans_300Light_Italic,
+	PlusJakartaSans_400Regular,
+	PlusJakartaSans_400Regular_Italic,
+	PlusJakartaSans_500Medium,
+	PlusJakartaSans_500Medium_Italic,
+	PlusJakartaSans_600SemiBold,
+	PlusJakartaSans_600SemiBold_Italic,
+	PlusJakartaSans_700Bold,
+	PlusJakartaSans_700Bold_Italic,
+} from '@expo-google-fonts/plus-jakarta-sans';
 import { DarkTheme, DefaultTheme, type Theme, ThemeProvider } from '@react-navigation/native';
 import { PortalHost } from '@rn-primitives/portal';
+import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as React from 'react';
 import { Platform, View } from 'react-native';
@@ -37,7 +52,22 @@ const usePlatformSpecificSetup = Platform.select({
 function RootLayoutNav() {
 	const { user, loading } = useAuth();
 
-	if (loading) {
+	const [loaded] = useFonts({
+		PlusJakartaSans_200ExtraLight,
+		PlusJakartaSans_300Light,
+		PlusJakartaSans_400Regular,
+		PlusJakartaSans_500Medium,
+		PlusJakartaSans_600SemiBold,
+		PlusJakartaSans_700Bold,
+		PlusJakartaSans_200ExtraLight_Italic,
+		PlusJakartaSans_300Light_Italic,
+		PlusJakartaSans_400Regular_Italic,
+		PlusJakartaSans_500Medium_Italic,
+		PlusJakartaSans_600SemiBold_Italic,
+		PlusJakartaSans_700Bold_Italic,
+	});
+
+	if (loading || !loaded) {
 		return (
 			<View className="flex-1 justify-center items-center bg-background">
 				<Text>Loading...</Text>

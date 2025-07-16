@@ -17,8 +17,8 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
 	const [user, setUser] = useState<User | null>(null);
 	const [loading, setLoading] = useState(true);
-	const [isReady, _setIsReady] = useState(false);
-	const { data: authInfo, loading: authInfoLoading } = useAuthInfoQuery();
+	const [isReady, setIsReady] = useState(false);
+	const { data: authInfo } = useAuthInfoQuery();
 
 	useEffect(() => {
 		const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -28,6 +28,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 				setUser(null);
 			}
 			setLoading(false);
+			setIsReady(true);
 		});
 
 		return unsubscribe;
@@ -35,10 +36,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
 	useEffect(() => {
 		const unsubscribe = auth.onIdTokenChanged((user) => {
-			console.log('idTokenChanged>>', user);
 			if (user?.emailVerified) {
 				setUser(user);
 			}
+			setIsReady(true);
 		});
 
 		return unsubscribe;

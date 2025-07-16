@@ -1,4 +1,3 @@
-import Constants from 'expo-constants';
 import { Link, router } from 'expo-router';
 import { FirebaseError } from 'firebase/app';
 import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
@@ -17,8 +16,6 @@ export default function SignUp() {
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
-
-	const scheme = Constants.expoConfig?.scheme;
 
 	const handleSignUp = async () => {
 		if (!email || !password || !confirmPassword) {
@@ -40,7 +37,7 @@ export default function SignUp() {
 		try {
 			const result = await createUserWithEmailAndPassword(auth, email, password);
 			await sendEmailVerification(result.user, {
-				url: `${scheme}://signin`,
+				url: `https://dyplove.com/dl`,
 			});
 			// Navigation will be handled by auth state change
 			// router.replace('/(app)');
@@ -70,7 +67,7 @@ export default function SignUp() {
 						errorMessage = error.message || errorMessage;
 				}
 			}
-
+			console.log(error);
 			Alert.alert('Sign Up Error', errorMessage);
 		} finally {
 			setIsLoading(false);

@@ -1,10 +1,11 @@
 import { ApolloClient, ApolloLink, HttpLink, InMemoryCache } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { onError } from '@apollo/client/link/error';
+import { config } from '~/config/env';
 import { auth } from '../firebase';
 
 const httpLink = new HttpLink({
-	uri: process.env.EXPO_PUBLIC_API_URL,
+	uri: config.apiUrl,
 });
 
 const errorLink = onError(({ operation, forward, graphQLErrors, networkError }) => {
