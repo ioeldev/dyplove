@@ -1,0 +1,14 @@
+{
+	"applinks": {
+		"apps": [],
+		"details": [
+			{
+				"appID": "9345J8B4WZ.com.dyplove.app",
+				"paths": ["/dl"]
+			}
+		]
+	},
+	"webcredentials": {
+		"apps": ["9345J8B4WZ.com.dyplove.app"]
+	}
+}
