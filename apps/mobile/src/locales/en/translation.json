@@ -1,3 +1,16 @@
 {
-	"welcome": {}
+	"welcome": {},
+	"navigation": {
+		"tabs": {
+			"home": "Home",
+			"clients": "Clients",
+			"providers": "Providers",
+			"documents": "Documents",
+			"finances": "Finances"
+		}
+	},
+	"home": {
+		"upcoming": "Upcoming",
+		"tasks": "Tasks"
+	}
 }

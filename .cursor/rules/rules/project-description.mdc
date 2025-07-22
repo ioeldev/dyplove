@@ -1,0 +1,84 @@
+---
+description: "This project is a landing page that showcases our app for wedding planning."
+globs: frontend/**/*.tsx
+alwaysApply: false
+---
+## Landing Page structure
+
+page "Landing Page" {
+  section "Hero" {
+    heading: "Organisez des mariages sans stress, du premier rendez-vous au grand jour."
+    subheading: "Une application complète pour les wedding planners : gérez vos clients, prestataires, documents, budgets et rendez-vous, tout en gardant une vue claire sur chaque étape."
+    buttons: [
+      { label: "Essayez la démo", variant: "primary" },
+      { label: "Demander un accès anticipé", variant: "secondary" }
+    ]
+    media: {
+      type: "image",
+      src: "/assets/mockup-hero-iphone.png"
+    }
+  }
+
+  section "Overview" {
+    heading: "Tout ce dont vous avez besoin pour organiser des mariages impeccables"
+    content: "Centralisez toutes vos informations et automatisez les tâches répétitives. Notre outil vous permet de suivre chaque couple, chaque prestataire et chaque détail en un seul endroit."
+    media: {
+      type: "image",
+      src: "/assets/overview-dashboard.png"
+    }
+  }
+
+  section "Clients" {
+    heading: "Un suivi personnalisé pour chaque couple"
+    content: "Créez une fiche détaillée pour chaque mariage : informations du couple, préférences, nombre d’invités, inspirations, documents partagés, et bien plus."
+    media: {
+      type: "video",
+      src: "/assets/client-card-demo.mp4"
+    }
+  }
+
+  section "Providers" {
+    heading: "Trouvez, suivez et évaluez vos prestataires"
+    content: "Un répertoire intégré pour gérer tous vos partenaires : lieux, traiteurs, photographes, DJ… Attribuez-les aux mariages, ajoutez des commentaires, notez leurs performances, et suivez les paiements."
+    media: {
+      type: "image",
+      src: "/assets/providers-directory.png"
+    }
+  }
+
+  section "Calendar" {
+    heading: "Planifiez sans vous perdre"
+    content: "Gérez vos rendez-vous, visites de lieux, deadlines de paiement et événements importants grâce à un calendrier synchronisé et visuellement clair."
+    media: {
+      type: "image",
+      src: "/assets/calendar-view.png"
+    }
+  }
+
+  section "Documents" {
+    heading: "Tous vos documents à portée de main"
+    content: "Stockez et organisez les contrats, devis, factures et autres fichiers essentiels dans un espace sécurisé, lié à chaque client ou prestataire."
+    media: {
+      type: "image",
+      src: "/assets/documents-storage.png"
+    }
+  }
+
+  section "Budget" {
+    heading: "Suivi budgétaire ultra précis pour chaque mariage"
+    content: "Suivez les dépenses, enregistrez les paiements, et visualisez les acomptes versés à chaque prestataire ainsi que le reste à payer. Ne perdez plus jamais le fil."
+    media: {
+      type: "image",
+      src: "/assets/budget-tracker.png"
+    }
+  }
+
+  section "Call to Action" {
+    heading: "Prêt(e) à transformer votre manière de travailler ?"
+    subheading: "Rejoignez les wedding planners qui utilisent notre application pour gagner du temps, impressionner leurs clients, et mieux collaborer avec leurs prestataires."
+    buttons: [
+      { label: "Demander un accès anticipé", variant: "primary" },
+      { label: "Voir la démo en vidéo", variant: "secondary" }
+    ]
+  }
+}

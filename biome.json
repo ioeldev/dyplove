@@ -9,5 +9,12 @@
 			"indentStyle": "tab",
 			"lineWidth": 120
 		}
+	},
+	"linter": {
+		"rules": {
+			"a11y": {
+				"noStaticElementInteractions": "off"
+			}
+		}
 	}
 }

@@ -20,12 +20,14 @@ import { PortalHost } from '@rn-primitives/portal';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as React from 'react';
+import { useEffect } from 'react';
 import { Platform, View } from 'react-native';
 import { SystemBars } from 'react-native-edge-to-edge';
 import { Text } from '~/components/ui/text';
 import { apolloClient } from '~/lib/apollo';
 // import { setAndroidNavigationBar } from '~/lib/android-navigation-bar';
 import { NAV_THEME } from '~/lib/constants';
+import { initI18n } from '~/lib/i18n';
 import { useColorScheme } from '~/lib/useColorScheme';
 import { AuthProvider, useAuth } from '~/providers/auth-provider';
 
@@ -67,6 +69,18 @@ function RootLayoutNav() {
 		PlusJakartaSans_700Bold_Italic,
 	});
 
+	useEffect(() => {
+		const initializeI18n = async () => {
+			try {
+				await initI18n();
+			} catch (error) {
+				console.error('Failed to initialize i18n:', error);
+			}
+		};
+
+		initializeI18n();
+	}, []);
+
 	if (loading || !loaded) {
 		return (
 			<View className="flex-1 justify-center items-center bg-background">
@@ -76,13 +90,14 @@ function RootLayoutNav() {
 	}
 
 	return (
-		<Stack screenOptions={{ headerShown: false }}>
+		<Stack screenOptions={{ headerShown: false, animation: 'none' }}>
 			<Stack.Protected guard={!!user}>
 				<Stack.Screen name="(app)" />
 			</Stack.Protected>
 			<Stack.Protected guard={!user}>
 				<Stack.Screen name="(unauthenticated)" />
 			</Stack.Protected>
+			<Stack.Screen name="+not-found" />
 		</Stack>
 	);
 }

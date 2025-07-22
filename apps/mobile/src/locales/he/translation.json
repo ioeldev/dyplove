@@ -1,3 +1,16 @@
 {
-	"welcome": {}
+	"welcome": {},
+	"navigation": {
+		"tabs": {
+			"home": "בית",
+			"clients": "לקוחות",
+			"providers": "ספקים",
+			"documents": "מסמכים",
+			"finances": "כספים"
+		}
+	},
+	"home": {
+		"upcoming": "קרוב",
+		"tasks": "משימות"
+	}
 }

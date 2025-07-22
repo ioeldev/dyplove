@@ -1,3 +1,16 @@
 {
-	"welcome": {}
+	"welcome": {},
+	"navigation": {
+		"tabs": {
+			"home": "Accueil",
+			"clients": "Clients",
+			"providers": "Prestataires",
+			"documents": "Documents",
+			"finances": "Finances"
+		}
+	},
+	"home": {
+		"upcoming": "À venir",
+		"tasks": "Tâches"
+	}
 }

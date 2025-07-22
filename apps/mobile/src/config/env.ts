@@ -1,8 +1,8 @@
 export const isLocal = true;
 
 export const devConfig = {
-	// apiUrl: 'http://localhost:3456/graphql',
-	apiUrl: 'https://7dd409c50f95.ngrok-free.app/graphql',
+	apiUrl: 'http://localhost:3456/graphql',
+	// apiUrl: 'https://7dd409c50f95.ngrok-free.app/graphql',
 };
 
 export const prodConfig = {

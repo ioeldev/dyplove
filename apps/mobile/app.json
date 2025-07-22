@@ -7,21 +7,26 @@
 		"icon": "./src/assets/images/icon.png",
 		"scheme": "dyplove",
 		"newArchEnabled": true,
-		"userInterfaceStyle": "light",
 		"splash": {
 			"image": "./src/assets/images/splash.png",
 			"resizeMode": "contain",
 			"backgroundColor": "#ffffff"
 		},
 		"extra": {
-			"supportsRTL": true
+			"supportsRTL": true,
+			"router": {},
+			"eas": {
+				"projectId": "18da22d1-a89d-477b-bde9-d2ff376a9239"
+			}
 		},
 		"assetBundlePatterns": ["**/*"],
 		"ios": {
+			"associatedDomains": ["applinks:dyplove.com", "applinks:dyplove.com"],
 			"supportsTablet": true,
 			"bundleIdentifier": "com.dyplove.app",
 			"infoPlist": {
-				"ExpoLocalization_supportsRTL": true
+				"ExpoLocalization_supportsRTL": true,
+				"ITSAppUsesNonExemptEncryption": false
 			},
 			"appleTeamId": "9345J8B4WZ"
 		},
@@ -29,7 +34,8 @@
 			"adaptiveIcon": {
 				"foregroundImage": "./src/assets/images/adaptive-icon.png",
 				"backgroundColor": "#ffffff"
-			}
+			},
+			"package": "com.dyplove.app"
 		},
 		"web": {
 			"bundler": "metro",
