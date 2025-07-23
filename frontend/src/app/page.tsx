@@ -11,6 +11,8 @@ import OverviewSection from '@/components/sections/OverviewSection';
 import ProvidersSection from '@/components/sections/ProvidersSection';
 
 export default function Home() {
+	console.log('process.env.API_URL>>', process.env.API_URL);
+
 	return (
 		<div className="min-h-screen bg-background">
 			<HeroSection />
